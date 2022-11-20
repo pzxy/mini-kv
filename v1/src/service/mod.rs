@@ -1,7 +1,6 @@
 use std::sync::Arc;
 
-use http::Request;
-use tracing::{debug, dispatcher};
+use tracing::{debug};
 
 use crate::{command_request::RequestData, *}; //作为service 应该引入全部的crate
 mod command_service;
