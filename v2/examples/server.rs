@@ -8,12 +8,13 @@ use v2::CommandRequest;
 use v2::CommandResponse;
 use v2::MemTable;
 use v2::Service;
+use v2::ServiceInner;
 #[tokio::main]
 async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
     let addr = "127.0.0.1:9527";
     let listener = TcpListener::bind(addr).await?;
-    let service = Service::new(MemTable::new());
+    let service: Service = ServiceInner::new(MemTable::default()).into();
     info! {"Start listening on {}", addr};
     loop {
         let (stream, addr) = listener.accept().await?;

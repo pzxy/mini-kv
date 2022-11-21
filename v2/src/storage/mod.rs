@@ -1,6 +1,6 @@
 mod memory;
-pub use memory::MemTable;
 use crate::{KvError, Kvpair, Value};
+pub use memory::MemTable;
 
 /// 对存储的抽象，我们不关心数据存在哪儿，但需要定义外界如何和存储打交道
 pub trait Storage {
@@ -18,9 +18,32 @@ pub trait Storage {
     fn get_iter(&self, table: &str) -> Result<Box<dyn Iterator<Item = Kvpair>>, KvError>;
 }
 
+// #[test]
+// fn memtable_iter_should_work() {
+//     let store = MemTable::new();
+//     test_get_iter(store);
+// }
 
-#[test]
-fn memtable_iter_should_work() {
-    let store = MemTable::new();
-    test_get_iter(store);
+pub struct StorageIter<T> {
+    data: T,
+}
+
+impl<T> StorageIter<T> {
+    fn new(data: T) -> Self {
+        Self { data }
+    }
+}
+
+/// 实现了这个trait，那里面的关联类型，也应该赋值才行。
+/// todo 这里没看懂。以后再说。
+impl<T> Iterator for StorageIter<T>
+where
+    T: Iterator,
+    // Item 关联类型，必须在实现的时候给一个实际的默认类型。
+    T::Item: Into<Kvpair>,
+{
+    type Item = Kvpair;
+    fn next(&mut self) -> Option<Self::Item> {
+        self.data.next().map(|v| v.into())
+    }
 }
