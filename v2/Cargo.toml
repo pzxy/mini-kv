@@ -12,6 +12,8 @@ prost = "0.10" # 处理 protobuf 的代码
 thiserror = "1.0.37"
 tracing = "0.1" # 日志处理
 http = "0.2"
+sled = "0.34"
+tempfile = "3"
 [dev-dependencies]
 anyhow = "1" # 错误处理
 async-prost = "0.4" # 支持把 protobuf 封装成 TCP frame

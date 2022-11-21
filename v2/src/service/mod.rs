@@ -77,22 +77,22 @@ impl<Store: Storage> ServiceInner<Store> {
         }
     }
 
-    fn fn_received(mut self, f: fn(&CommandRequest)) -> Self {
+    pub fn fn_received(mut self, f: fn(&CommandRequest)) -> Self {
         self.on_received.push(f);
         self
     }
 
-    fn fn_executed(mut self, f: fn(&CommandResponse)) -> Self {
+    pub fn fn_executed(mut self, f: fn(&CommandResponse)) -> Self {
         self.on_executed.push(f);
         self
     }
 
-    fn fn_before_send(mut self, f: fn(&mut CommandResponse)) -> Self {
+    pub fn fn_before_send(mut self, f: fn(&mut CommandResponse)) -> Self {
         self.on_before_send.push(f);
         self
     }
 
-    fn fn_after_send(mut self, f: fn()) -> Self {
+    pub fn fn_after_send(mut self, f: fn()) -> Self {
         self.on_after_send.push(f);
         self
     }
