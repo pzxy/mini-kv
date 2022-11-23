@@ -1,7 +1,7 @@
 pub mod abi;
 
 use std::vec;
-use std::convert::{TryFrom, TryInto};
+use std::convert::{TryFrom};
 
 use abi::{command_request::RequestData, *};
 use bytes::Bytes;

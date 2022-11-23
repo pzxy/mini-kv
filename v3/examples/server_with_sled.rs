@@ -6,7 +6,6 @@ use tokio::net::TcpListener;
 use tracing::info;
 use v3::CommandRequest;
 use v3::CommandResponse;
-use v3::MemTable;
 use v3::Service;
 use v3::ServiceInner;
 use v3::SledDb;
