@@ -1,2 +1,2 @@
 # mini-kv
-tyrchen rust版开学第一课
+the mini-kv is based on [simple-kv](https://github.com/tyrchen/simple-kv.git)
